@@ -28,7 +28,7 @@ each subject.
 **Process Prerequisites**
 
      1) data.table is installed in the current environment
-     2) Data from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+     2) Data from [https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
      is extracted and the directory "UCI HAR Dataset" is in the working directory
      
 **Process**     
