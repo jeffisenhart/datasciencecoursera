@@ -11,7 +11,7 @@ run_analysis.R
 ##Author 
 Jeff isenhart
 
-Description of run_analysis.R processing:
+##Description of run_analysis.R processing:
 
 **Requirements/Assumptions**
 
