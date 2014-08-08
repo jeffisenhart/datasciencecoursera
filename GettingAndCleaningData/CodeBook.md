@@ -32,7 +32,7 @@ each subject.
 * Data from [https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
 is extracted and the directory "UCI HAR Dataset" is in the working directory
      
-**Process**     
+**run_analysis.R Process**     
 
      loads data.table library
      
