@@ -15,6 +15,7 @@ Jeff isenhart
 Description of run_analysis.R processing:
 
 **Requirements/Assumptions**
+
 You should create one R script called run_analysis.R that does the following. 
 Merges the training and the test sets to create one data set.
 Extracts only the measurements on the mean and standard deviation for each measurement. 
@@ -67,7 +68,6 @@ each subject.
      
  **theDataSet.txt**
  
- ---------
  
  	10300 observations of  68 variables
  	
@@ -144,7 +144,6 @@ each subject.
 
 **theSummarizedDataSet.txt**
  
- ---------
      180 observations of  68 variables
      
      Columns
