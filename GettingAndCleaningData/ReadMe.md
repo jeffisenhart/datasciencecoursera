@@ -35,6 +35,7 @@ To generate the data set, check out this repo to use run_analysis.R
 Include the file in your script or R session
 
 > library(data.table)
+
 > source("run_analysis.R")
 
 Run run_analysis()
