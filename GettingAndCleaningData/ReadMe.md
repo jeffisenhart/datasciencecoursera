@@ -31,7 +31,7 @@ Good luck!
 
 
 To generate the data set, check out this repo to use run_analysis.R
-Include the file in your script or r session
+Include the file in your script or R session
 
 > Include("run_analysis.R")
 
