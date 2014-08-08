@@ -70,7 +70,7 @@ is extracted and the directory "UCI HAR Dataset" is in the working directory
  **theDataSet.txt**
  
  
- 	10300 observations of  68 variables
+ 	10299 observations of 68 variables
  	
  	Columns
 		Activity
@@ -145,7 +145,7 @@ is extracted and the directory "UCI HAR Dataset" is in the working directory
 
 **theSummarizedDataSet.txt**
  
-     180 observations of  68 variables
+     180 observations of 68 variables
      
      Columns
      	Activities
