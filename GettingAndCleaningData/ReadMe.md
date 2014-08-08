@@ -30,10 +30,13 @@ Good luck!
      2) Data from [zip](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) is extracted and directory "UCI HAR Dataset" is in the working directory
 
 
-To generate the data set, check out this repo
+To generate the data set, check out this repo to use run_analysis.R
+Include the file in your script or r session
+
 > Include("run_analysis.R")
 
 Run run_analysis()
+
 This will produce
 * theDataSet.txt - merging all the data files
 * theSummarizedDataSet.txt - grouping the dataset by Activity and Subject, taking the mean of all other columns
