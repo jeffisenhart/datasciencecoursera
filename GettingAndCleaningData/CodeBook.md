@@ -65,12 +65,15 @@ is extracted and the directory "UCI HAR Dataset" is in the working directory
      prefix data columns with MeanOf_ to indicate their aggregation
      write this data set to a file called theSummarizedDataSet.txt
      
+##Data
 
+Note: 
+
+>The study was completed by a third party and has more details on each varable in 
+	UCI HAR Dataset/features_info.txt
      
  **theDataSet.txt**
- 
-    >The study was completed by a third party and has more details on each varable in UCI HAR Dataset/features_info.txt
-    
+   
  	10299 observations of 68 variables
  	
  	Columns
@@ -145,8 +148,6 @@ is extracted and the directory "UCI HAR Dataset" is in the working directory
 		
 
 **theSummarizedDataSet.txt**
- 
-	>The study was completed by a third party and has more details on each varable in UCI HAR Dataset/features_info.txt
  
      180 observations of 68 variables
      
