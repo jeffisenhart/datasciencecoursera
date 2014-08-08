@@ -70,7 +70,8 @@ is extracted and the directory "UCI HAR Dataset" is in the working directory
 Note: 
 
 >The study was completed by a third party and has more details on each varable in 
-	UCI HAR Dataset/features_info.txt
+
+>UCI HAR Dataset/features_info.txt
      
  **theDataSet.txt**
    
