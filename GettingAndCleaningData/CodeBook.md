@@ -6,17 +6,30 @@ Code Book
 Human Activity Recognition Using Smartphones Dataset
 ---------
 
-**File**
+##File
 run_analysis.R
-**Author** 
+
+##Author 
 Jeff isenhart
 
 Description of run_analysis.R processing:
 
-**Prerequisites**
+**Requirements/Assumptions**
+You should create one R script called run_analysis.R that does the following. 
+Merges the training and the test sets to create one data set.
+Extracts only the measurements on the mean and standard deviation for each measurement. 
+> Note: Assume this implies columns containing -mean() and -std()
+
+Uses descriptive activity names to name the activities in the data set
+Appropriately labels the data set with descriptive variable names. 
+Creates a second, independent tidy data set with the average of each variable for each activity and 
+each subject. 
+
+**Process Prerequisites**
 
      1) data.table is installed in the current environment
-     2) Data from [zip](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) is extracted and directory "UCI HAR Dataset" is in the working directory
+     2) Data from [zip](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) 
+     is extracted and directory "UCI HAR Dataset" is in the working directory
      
 **Process**     
 
@@ -37,12 +50,17 @@ Description of run_analysis.R processing:
      
      loads  UCI HAR Dataset/features.txt to create columns
      add colums "Activity" and "Subject" in the first to positions of the columns respectively
-     iterate over columns to keep "Activity", "Subject", and any column containing -mean() or -std() [per requirement]
+     iterate over columns to keep "Activity", "Subject", and any column containing -mean() or -std()
+     
+     > Note: Assume this implies columns containing -mean() and -std()
+     
      the outcome of column iteration becomes the datasets column names
      loads  UCI HAR Dataset/activity_labels.txt to replace activity values with labels
-     format the columns (other than Activity and Subject columns) to make them easier to read and understand
+     format the columns (other than Activity and Subject columns) to make them easier to read and 
+     understand
      write the dataset to a file called theDataSet.txt
-     aggregate data - take the mean of all columns (except Activity and Subject) and group by Activity and Subject
+     aggregate data - take the mean of all columns (except Activity and Subject) and group by 
+     Activity and Subject
      write this data set to a file called theSummarizedDataSet.txt
      
 
