@@ -62,6 +62,7 @@ is extracted and the directory "UCI HAR Dataset" is in the working directory
      write the dataset to a file called theDataSet.txt
      aggregate data - take the mean of all columns (except Activity and Subject) and group by 
      Activity and Subject
+     prefix data columns with MeanOf_ to indicate their aggregation
      write this data set to a file called theSummarizedDataSet.txt
      
 
