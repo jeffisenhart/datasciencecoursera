@@ -42,4 +42,4 @@ Run run_analysis()
 
 This will produce
 * theDataSet.txt - merging all the data files
-* theSummarizedDataSet.txt - grouping the dataset by Activity and Subject, taking the mean of all other columns
+* theSummarizedDataSet.txt - grouping the dataset by activity and subject, taking the mean of all other columns

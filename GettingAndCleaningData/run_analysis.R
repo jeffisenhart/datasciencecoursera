@@ -91,7 +91,7 @@ run_analysis <- function(){
      
       # Lets set up some column names for our the tidy outcome
       originalMeasureNames <- as.vector(measurementNames[,2])
-      tidyColumnNames <- c("Activity","Subject",originalMeasureNames)
+      tidyColumnNames <- c("activity","subject",originalMeasureNames)
       setnames(mergedTable,tidyColumnNames);
       for( colName in originalMeasureNames ){
             if( length(grep("-mean\\(\\)",colName)) <= 0 & 
@@ -111,52 +111,56 @@ run_analysis <- function(){
       names(activityLookup) <- as.vector(activityTable[,2])
       len <- length(activityLookup)
       for( i in (c(1:len)) ){
-            mergedTable$Activity[mergedTable$Activity==i] <- names(activityLookup)[i]
+            mergedTable$activity[mergedTable$activity==i] <- names(activityLookup)[i]
       }
       
       # Now lets scrub the column names to make them prettier
       tidyMeasureNames <- colnames(mergedTable)
-      tidyMeasureNames <- gsub("^t\\.*","Time",tidyMeasureNames,fixed=F)
-      tidyMeasureNames <- gsub("^f\\.*","FrequencyDomain",tidyMeasureNames,fixed=F)
+      tidyMeasureNames <- gsub("^t\\.*","time",tidyMeasureNames,fixed=F)
+      tidyMeasureNames <- gsub("^f\\.*","frequencydomain",tidyMeasureNames,fixed=F)
       
-      tidyMeasureNames <- gsub("Gyro","Gyroscope",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("Acc","Acceleration",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("Mag","Magnitude",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("Gyro","gyroscope",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("Acc","acceleration",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("Mag","magnitude",tidyMeasureNames,fixed=T)
 
-      tidyMeasureNames <- gsub("mean()","Mean",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("std()","StandardDeviation",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("mad()","MediaAbsoluteDeviation",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("max()","Maximum",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("min()","Minimum",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("sma()","SignalMagnitudeArea",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("energy()","EnergyMeasure",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("iqr()","InterquartileRange",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("entropy()","SignalEntropy",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("arCoeff()","AutorregresionCoefficients",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("correlation()","CorrelationCoefficient",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("maxInds()","MaxMagnitudeIndex",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("meanFreq()","WeightedFrequencyAverage",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("maxInds()","MaxMagnitudeIndex",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("skewness()","SkewnessOfFrequencyDomain",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("kurtosis()","KurtosisOfFrequencyDomain",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("bandsEnergy()","EngeryOfFrequencyInterval",tidyMeasureNames,fixed=T)
-      tidyMeasureNames <- gsub("angle()","Angle",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("mean()","mean",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("std()","standardDeviation",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("mad()","medianabsolutedeviation",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("max()","maximum",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("min()","minimum",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("sma()","signalmagnitudearea",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("energy()","energymeasure",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("iqr()","interquartilerange",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("entropy()","signalentropy",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("arCoeff()","autorregresionaoefficients",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("correlation()","correlationcoefficient",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("maxInds()","maxmagnitudeindex",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("meanFreq()","weightedfrequencyaverage",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("maxInds()","maxmagnitudeindex",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("skewness()","skewnessoffrequencydomain",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("kurtosis()","kurtosisoffrequencydomain",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("bandsEnergy()","engeryoffrequencyonterval",tidyMeasureNames,fixed=T)
+      tidyMeasureNames <- gsub("angle()","angle",tidyMeasureNames,fixed=T)
       
-      tidyMeasureNames <- gsub(",","_",tidyMeasureNames,fixed=F)
-      tidyMeasureNames <- gsub("-","_",tidyMeasureNames,fixed=F)
+      tidyMeasureNames <- gsub(",","",tidyMeasureNames,fixed=F)
+      tidyMeasureNames <- gsub("-","",tidyMeasureNames,fixed=F)
+      tidyMeasureNames <- gsub("_","",tidyMeasureNames,fixed=F)
       
-      colnames(mergedTable) <- tidyMeasureNames
+      colnames(mergedTable) <- tolower( tidyMeasureNames )
       # That was step three
       write.table(mergedTable,file.path(".","theDataSet.txt"), row.names=F)
       # Boom, that was step four
       # Now for the aggregation
-      aggData <- mergedTable[,lapply(.SD,mean),by=list(Activity,Subject)]
+      aggData <- mergedTable[,lapply(.SD,mean),by=list(activity,subject)]
       # Now lets edit the column names of the summarized table to reflect the
       # aggregation
-      meanColNames <- paste("MeanOf",colnames(aggData),sep="_")
-      meanColNames[1] <- "Activities"
-      meanColNames[2] <- "Subject"
+      meanColNames <- paste("meanof",colnames(aggData),sep="")
+      meanColNames[1] <- "activity"
+      meanColNames[2] <- "subject"
       colnames(aggData) <- meanColNames
       write.table(aggData,file.path(".","theSummarizedDataSet.txt"), row.names=F)
       # Step 5 complete, time for a tall cool drink ;)
+      # If anybody wants to use the tidy data, lets return it now
+      # Lets return it invisibly so we do fill the console with a ton of text
+      invisible(aggData)
 }
