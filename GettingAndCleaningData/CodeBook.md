@@ -47,7 +47,7 @@ is extracted and the directory "UCI HAR Dataset" is in the working directory
      column merges y_test.txt, subject_test.txt and X_text.txt together
      column merges y_train.txt, subject_train.txt and X_train.txt together
      
-     row merges the two columns
+     row merges the two sets (test and train)
      
      loads  UCI HAR Dataset/features.txt to create columns
      add columns "activity" and "subject" in the first to positions of the columns respectively
@@ -60,7 +60,7 @@ is extracted and the directory "UCI HAR Dataset" is in the working directory
      format the columns (other than Activity and Subject columns) to make them easier to read and 
      understand
      write the dataset to a file called theDataSet.txt
-     aggregate data - take the mean of all columns (except activity and S\subject) and group by 
+     aggregate data - take the mean of all columns (except activity and subject) and group by 
      activity and subject
      prefix data columns with 'meanof' to indicate their aggregation
      write this data set to a file called theSummarizedDataSet.txt
