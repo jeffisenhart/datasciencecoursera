@@ -6,7 +6,7 @@ shinyUI(fluidPage(
       tags$head(tags$script(src="js/highcharts.js")),
       # Application title
       tags$div(class="page-header text-center",HTML("<h1>Hangman</h1>")),
-      tags$a(href="http://en.wikipedia.org/wiki/Hangman_(game)",HTML("Documentation/How to play"),target="_blank",class="text-center"),
+      tags$a(href="http://en.wikipedia.org/wiki/Hangman_(game)",HTML("Rules/How to play"),target="_blank",class="text-center"),
       sidebarLayout(
             
             # Sidebar with a slider input
@@ -45,10 +45,9 @@ shinyUI(fluidPage(
                                     
                               });'
                   ),
-                  tags$script('document.body.onload = function() {
-                              Shiny.onInputChange("newGame", new Date());
-                              };'
-                  )
+                  tags$script('alert("Click the New Game button to begin!");')
+                  
+                  
                   
             )#end mainPanel
       )#end sidebarLayout
