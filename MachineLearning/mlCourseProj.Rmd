@@ -1,0 +1,96 @@
+---
+title: "Machine Learning Course Project"
+output: html_document
+---
+
+Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. More information is available from the website here: http://groupware.les.inf.puc-rio.br/har (see the section on the Weight Lifting Exercise Dataset). 
+
+## Data and Data Cleansing
+
+```{r}
+if ("caret" %in% rownames(installed.packages()) == FALSE) {
+    install.packages("caret")
+}
+if ("randomForest" %in% rownames(installed.packages()) == FALSE) {
+    install.packages("randomForest")
+}
+library(caret)
+library(randomForest)
+set.seed(2112)
+trainFile <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
+testFile <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"
+trainFileName <- "./pml-training.csv"
+testFileName <- "./pml-testing.csv"
+if( !file.exists(trainFileName) ){
+      download.file(trainFile,destfile=trainFileName, method="curl")
+}
+if( !file.exists(testFileName) ){
+     download.file(testFile,destfile=testFileName, method="curl")
+}
+trainData <- read.csv(trainFileName)
+#Lets trim off the first fiew non-measure columns (X,
+#                                                 user_name,
+#                                                 raw_timestamp_part_1,
+#                                                 raw_timestamp_part_2   
+#                                                 cvtd_timestamp,
+#                                                 new_window,
+#                                                 num_window)
+colLen <- length(colnames(trainData))
+trainData <- trainData[,c(8:colLen)]
+#Now lets trim off the calculation data
+bogusNames <- grep("^max|^min|^ampl|^var|^avg|^stdd|^ske|^kurt",colnames(trainData))
+trainData <- trainData[-bogusNames]
+
+
+testData <- read.csv(testFileName)
+testData <- testData[,c(8:colLen)]
+bogusNames <- grep("^max|^min|^ampl|^var|^avg|^stdd|^ske|^kurt",colnames(testData))
+testData <- testData[-bogusNames]
+
+```
+
+## Data and Data Partitioning
+
+Lets split the input training data into partitions 'actualTrain' and 'actualValidate' variables
+
+```{r}
+partitionTrain <- createDataPartition(trainData$classe,p=0.60,list=FALSE)
+actualTrain <- trainData[partitionTrain,]
+actualValidate <- trainData[-partitionTrain,]
+str(actualTrain)
+```
+
+## Modeling
+
+Lets train the model using random forest and print the model
+
+```{r}
+model <- randomForest(classe~.,data=actualTrain)
+print(model)
+```
+
+## Confusion Matrix
+
+Evaluate the model via confusionMatrix
+
+```{r}
+confusionMatrix(predict(model,newdata=actualValidate[,-ncol(actualValidate)]),actualValidate$classe)
+```
+
+Predicted accuracy is 99%
+
+## Test The Model and Write Files
+```{r}
+predictions <- predict(model,newdata=testData)
+print(predictions)
+
+pml_write_files = function(x){
+  n = length(x)
+  for(i in 1:n){
+    filename = paste0("problem_id_",i,".txt")
+    write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
+  }
+}
+pml_write_files(predictions)
+```
+
