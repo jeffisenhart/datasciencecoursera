@@ -10,7 +10,6 @@ function showEmptyWord(theWord,containerElement) {
       guesses = [];
       correct = 0;
       document.getElementById("answer").innerHTML = "";
-      //alert(currentWord);
       var html = "<table><tr>";
       var idx = 0;
       for(idx = 0;idx < currentWord.length; idx++){
@@ -71,12 +70,16 @@ function guess(index) {
                   losses++;
                   document.getElementById("hm").src = "hang6.png";
                   document.getElementById("answer").innerHTML = "<h3 style='color:red;'>Answer: <i>" + currentWord + "</i></h3>";
-                  //Shiny.onInputChange("loss", new Date());
-                  //Shiny.onInputChange("newGame", null);
                   drawChart();
                   
             }
       }
+}
+function doInit(){
+	document.getElementById("hm").src = "hang0.png";
+    showEmptyWord("coursera",document.getElementById("wordContainer"));
+    resetAlpha(document.getElementById("alphaContainer"));
+    document.getElementById("answer").innerHTML = "<h3 style='color:red;'>Hint: <i>coursera</i></h3>";
 }
 function drawChart(){
       
