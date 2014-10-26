@@ -55,9 +55,32 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 
+<div id="course-project-background" class="section level2">
+<h2>Course Project Background</h2>
 <p>Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. More information is available from the website here: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a> (see the section on the Weight Lifting Exercise Dataset).</p>
-<div id="data-and-data-cleansing" class="section level2">
-<h2>Data and Data Cleansing</h2>
+</div>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>The training data for this project are available here:</p>
+<p><a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv</a></p>
+<p>The test data are available here:</p>
+<p><a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv</a></p>
+<p>The data for this project come from this source: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a>. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment.</p>
+</div>
+<div id="what-you-should-submit" class="section level2">
+<h2>What you should submit</h2>
+<p>The goal of your project is to predict the manner in which they did the exercise. This is the “classe” variable in the training set. You may use any of the other variables to predict with. You should create a report describing how you built your model, how you used cross validation, what you think the expected out of sample error is, and why you made the choices you did. You will also use your prediction model to predict 20 different test cases.</p>
+<ol style="list-style-type: decimal">
+<li><p>Your submission should consist of a link to a Github repo with your R markdown and compiled HTML file describing your analysis. Please constrain the text of the writeup to &lt; 2000 words and the number of figures to be less than 5. It will make it easier for the graders if you submit a repo with a gh-pages branch so the HTML page can be viewed online (and you always want to make it easy on graders :-).</p></li>
+<li><p>You should also apply your machine learning algorithm to the 20 test cases available in the test data above. Please submit your predictions in appropriate format to the programming assignment for automated grading. See the programming assignment for additional details.</p></li>
+</ol>
+</div>
+<div id="reproducibility" class="section level2">
+<h2>Reproducibility</h2>
+<p>Due to security concerns with the exchange of R code, your code will not be run during the evaluation by your classmates. Please be sure that if they download the repo, they will be able to view the compiled HTML version of your analysis.</p>
+</div>
+<div id="settings-data-and-data-cleansing" class="section level2">
+<h2>Settings, Data and Data Cleansing</h2>
 <pre class="r"><code>if (&quot;caret&quot; %in% rownames(installed.packages()) == FALSE) {
     install.packages(&quot;caret&quot;)
 }
@@ -73,8 +96,8 @@ library(caret)</code></pre>
 <pre class="r"><code>set.seed(2112)
 trainFile &lt;- &quot;https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv&quot;
 testFile &lt;- &quot;https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv&quot;
-trainFileName &lt;- &quot;./pml-training.csv&quot;
-testFileName &lt;- &quot;./pml-testing.csv&quot;
+trainFileName &lt;- &quot;pml-training.csv&quot;
+testFileName &lt;- &quot;pml-testing.csv&quot;
 if( !file.exists(trainFileName) ){
       download.file(trainFile,destfile=trainFileName, method=&quot;curl&quot;)
 }
@@ -167,7 +190,7 @@ str(actualTrain)</code></pre>
 <h2>Modeling</h2>
 <p>Lets train the model using random forest and print the model</p>
 <pre class="r"><code>model &lt;- randomForest(classe~.,data=actualTrain)
-print(model)</code></pre>
+model</code></pre>
 <pre><code>## 
 ## Call:
 ##  randomForest(formula = classe ~ ., data = actualTrain) 
@@ -183,6 +206,7 @@ print(model)</code></pre>
 ## C    0   16 2036    2    0 0.008763389
 ## D    0    0   32 1895    3 0.018134715
 ## E    0    1    1    2 2161 0.001847575</code></pre>
+<p>The OOB estimate of error rate: 0.66%</p>
 </div>
 <div id="confusion-matrix" class="section level2">
 <h2>Confusion Matrix</h2>
@@ -219,7 +243,7 @@ print(model)</code></pre>
 ## Detection Rate         0.2843   0.1913   0.1728   0.1625   0.1837
 ## Detection Prevalence   0.2860   0.1928   0.1746   0.1626   0.1839
 ## Balanced Accuracy      0.9986   0.9935   0.9945   0.9956   0.9995</code></pre>
-<p>Predicted accuracy is 99%</p>
+<p>This yeilds an accuracy off 99%. So all seems well enough to charge ahead with the prediction…</p>
 </div>
 <div id="test-the-model-and-write-files" class="section level2">
 <h2>Test The Model and Write Files</h2>
